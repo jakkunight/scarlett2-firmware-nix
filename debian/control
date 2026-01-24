@@ -1,8 +1,8 @@
 Package: scarlett2-firmware
-Version: VERSION
+Version: 1:VERSION
 Section: non-free/sound
 Priority: optional
 Architecture: all
-Depends: 
+Depends:
 Maintainer: Geoffrey D. Bennett <g@b4.vu>
-Description: Firmware for Focusrite Scarlett2 devices
+Description: Firmware for Focusrite Scarlett 2nd/3rd/4th Gen, Clarett USB/+, Vocaster

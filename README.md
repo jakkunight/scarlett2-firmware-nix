@@ -1,7 +1,7 @@
 # Scarlett2 Firmware
 
-This repository contains the latest firmware for these Focusrite
-interfaces:
+This repository contains the firmware, tested and working well with
+Linux, for these Focusrite interfaces:
 
 - Scarlett 2nd Gen 6i6, 18i8, and 18i20
 - Scarlett 3rd Gen Solo, 2i2, 4i4, 8i6, 18i8, and 18i20
@@ -10,14 +10,15 @@ interfaces:
 - Clarett+ 2Pre, 4Pre, and 8Pre
 - Vocaster One and Two
 
-These files are only useful with:
+These files are used by:
 
-- the Linux [`scarlett2` firmware update
-  utility](https://github.com/geoffreybennett/scarlett2) and
-
-- the [ALSA Scarlett2 Control
+- the [ALSA Scarlett Control
   Panel](https://github.com/geoffreybennett/alsa-scarlett-gui/)
-  (`alsa-scarlett-gui`).
+  (`alsa-scarlett-gui`), or
+
+- the [`scarlett2` CLI
+  utility](https://github.com/geoffreybennett/scarlett2) — for
+  command-line firmware management.
 
 Install these files using the [RPM/deb
 package](https://github.com/geoffreybennett/scarlett2-firmware/releases),

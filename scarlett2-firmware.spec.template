@@ -1,6 +1,7 @@
 Name:           scarlett2-firmware
-Version:        2407
-Release:        1
+Epoch:          1
+Version:        VERSION
+Release:        1%{?dist}
 Summary:        Firmware for Focusrite Scarlett2 devices
 
 License:        Redistributable, no modification permitted
@@ -31,14 +32,17 @@ install -pm 644 LICENSE.Focusrite %{buildroot}/usr/share/licenses/scarlett2-firm
 /usr/share/licenses/scarlett2-firmware
 
 %changelog
-* Wed Apr 2 2025 Geoffrey D. Bennett <g@b4.vu> - 2407
-- Remove dist from release number.
-- Updated 4th Gen Solo firmware to 2188.
-- Updated 4th Gen 4i4 firmware to 2407.
+* Mon Jan 26 2026 Geoffrey D. Bennett <g@b4.vu> - 1.0-1
+- Release 1.0
+- Add Epoch to handle version number reset
+
+* Wed Apr 02 2025 Geoffrey D. Bennett <g@b4.vu> - 2407-1
+- Updated 4th Gen Solo firmware to 2188
+- Updated 4th Gen 4i4 firmware to 2407
 
 * Wed Feb 21 2024 Geoffrey D. Bennett <g@b4.vu> - 2128b-1
-- Added Clarett USB and Vocaster firmware files.
-- Moved firmware to subdirectory.
+- Added Clarett USB and Vocaster firmware files
+- Moved firmware to subdirectory
 
 * Wed Feb 21 2024 Geoffrey D. Bennett <g@b4.vu> - 2128-1
-- Initial RPM release of the Scarlett2 firmware files.
+- Initial RPM release of the Scarlett2 firmware files
