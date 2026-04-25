@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     container: fedora:latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
@@ -39,46 +39,35 @@ jobs:
         run: |
           RPM_PATH=$(find ~/rpmbuild/RPMS -name '*.rpm' | head -1)
           echo "rpm_path=$RPM_PATH" >> $GITHUB_OUTPUT
-          echo "rpm_name=$(basename $RPM_PATH)" >> $GITHUB_OUTPUT
 
       - name: Upload RPM as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: rpm-package
           path: ${{ steps.find-rpm.outputs.rpm_path }}
 
       - name: Upload RPM to release
         if: github.event_name == 'release'
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v3
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ${{ steps.find-rpm.outputs.rpm_path }}
-          asset_name: ${{ steps.find-rpm.outputs.rpm_name }}
-          asset_content_type: application/x-rpm
+          files: ${{ steps.find-rpm.outputs.rpm_path }}
 
   build-deb:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Build deb
         run: make deb VERSION=${{ env.APP_VERSION }}
 
       - name: Upload deb as artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: deb-package
           path: ./${{ env.APP_NAME }}_${{ env.APP_VERSION }}.deb
 
       - name: Upload deb to release
         if: github.event_name == 'release'
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: softprops/action-gh-release@v3
         with:
-          upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./${{ env.APP_NAME }}_${{ env.APP_VERSION }}.deb
-          asset_name: ${{ env.APP_NAME }}_${{ env.APP_VERSION }}.deb
-          asset_content_type: application/vnd.debian.binary-package
+          files: ./${{ env.APP_NAME }}_${{ env.APP_VERSION }}.deb
