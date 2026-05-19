@@ -1,4 +1,4 @@
-.PHONY: help install tar rpm deb arch clean
+.PHONY: help install tar rpm deb clean
 
 FIRMWARE_DIR := firmware
 FIRMWARE_FILES := $(wildcard $(FIRMWARE_DIR)/*.bin)
@@ -18,7 +18,6 @@ help:
 	@echo "  make tar - Create a tarball of the firmware files and spec file"
 	@echo "  make rpm - Build an RPM package from the tarball"
 	@echo "  make deb - Build a deb package"
-	@echo "  make arch - Generate PKGBUILD for Arch Linux"
 	@echo "  make clean - Remove generated files"
 
 install:
@@ -54,9 +53,6 @@ deb:
 	sed "s/VERSION/$(VERSION)/g" debian/control > deb-build/DEBIAN/control
 	dpkg-deb --root-owner-group --build deb-build $(NAME)_$(VERSION).deb
 	rm -rf deb-build
-
-arch:
-	sed 's/VERSION/$(VERSION)/g' PKGBUILD.template > PKGBUILD
 
 clean:
 	rm -rf $(TAR_FILE) $(NAME)_$(VERSION).deb
