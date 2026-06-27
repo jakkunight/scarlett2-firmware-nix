@@ -36,7 +36,8 @@
           # system.
 
           # Equivalent to  inputs'.nixpkgs.legacyPackages.hello;
-          packages.default = (import ./nix/default.nix pkgs);
+          packages.default = self'.packages.scarlett2-firmware-nix;
+          packages.scarlett2-firmware-nix = (import ./nix/default.nix pkgs);
         };
       flake = {
         # The usual flake attributes can be defined here, including system-
